@@ -83,7 +83,7 @@ def exploratory_data_analysis():
 
 
 # Page 3: Machine Learning Modeling
-def machine_learning_modeling():
+def machine_learning_modeling_classification():
     stake_encoding = {'Edmonton North Stake': 0, 'Gateway Stake': 1, 'Riverbend Stake': 2, 'Bonnie Doon Stake': 3,
                       'YSA Stake': 4}
     ward_encoding = {'Namao Ward': 0, 'Lee Ridge Ward': 1, 'Blackmud Creek Ward': 2, 'Rabbit Hill Ward': 3,
@@ -135,7 +135,38 @@ def machine_learning_modeling():
 
         # You can add additional information or actions based on the prediction if needed
 
+def machine_learning_modeling_regression():
+    st.title("Machine Learning Modeling")
+    st.write("Enter the details to predict donation bags:")
 
+    # Input fields for user to enter data
+    completed_routes = st.slider("Completed More Than One Route", 0, 1, 0)
+    routes_completed = st.slider("Routes Completed", 1, 10, 5)
+    time_spent = st.slider("Time Spent (minutes)", 10, 300, 60)
+    adult_volunteers = st.slider("Number of Adult Volunteers", 1, 50, 10)
+    doors_in_route = st.slider("Number of Doors in Route", 10, 500, 100)
+    youth_volunteers = st.slider("Number of Youth Volunteers", 0, 50, 10)
+
+    # Predict button
+    if st.button("Predict"):
+        from sklearn.model_selection import train_test_split
+
+        X = data.drop(columns=['Donation Bags Collected','Location','Ward/Branch','Stake','Unnamed: 0'])
+        y = data['Donation Bags Collected']
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+        from sklearn.neighbors import KNeighborsRegressor
+        model = KNeighborsRegressor(n_neighbors=5)  # You can adjust the number of neighbors
+        model.fit(X_train, y_train)
+    
+        # Prepare input data for prediction
+        user_input = [[adult_volunteers, youth_volunteers, time_spent, completed_routes,routes_completed , doors_in_route]] 
+
+        # Make prediction
+        prediction = model.predict(user_input)
+
+        # Display the prediction
+        st.success(f"Predicted Donation Bags: {prediction[0]}")
 # Page 4: Stake/Ward Map
 
 def neighbourhood_mapping():
@@ -184,8 +215,10 @@ def main():
         dashboard()
     elif app_page == "EDA":
         exploratory_data_analysis()
-    elif app_page == "ML Modeling":
-        machine_learning_modeling()
+    elif app_page == "ML Modeling-Time Prediction":
+        machine_learning_modeling_classification()
+    elif app_page == "ML Modeling-Donation Bag Prediction":
+        machine_learning_modeling_regression()
     elif app_page == "Stake/Ward Map":
         neighbourhood_mapping()
     elif app_page == "Data Collection":
