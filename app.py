@@ -209,7 +209,7 @@ def chatbot():
 def main():
     st.sidebar.title("Food Drive App")
     app_page = st.sidebar.radio("Select a Page",
-                                ["Dashboard", "EDA", "ML Modeling", "Stake/Ward Map", "Data Collection", "Chatbot"])
+                                ["Dashboard", "EDA", "ML Modeling-Time Prediction", "ML Modeling-Donation Bag Prediction", "Stake/Ward Map", "Data Collection", "Chatbot"])
 
     if app_page == "Dashboard":
         dashboard()
