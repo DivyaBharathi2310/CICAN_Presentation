@@ -13,7 +13,7 @@ data = pd.read_csv('combined_data.csv', encoding='latin1')
 # Page 1: Dashboard
 def dashboard():
     st.title("Edmonton Food Drive Dashboard")
-    st.image("/content/Untitled design.jpg")
+    st.image("Untitled design.jpg")
 
     st.subheader("💡 Abstract:")
     inspiration = '''
