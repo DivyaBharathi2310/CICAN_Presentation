@@ -151,12 +151,18 @@ def machine_learning_modeling_regression():
     if st.button("Predict"):
         from sklearn.model_selection import train_test_split
 
-        X = data.drop(columns=['Donation Bags Collected','Location','Ward/Branch','Stake','Unnamed: 0'])
-        y = data['Donation Bags Collected']
+        features = ['# of Adult Volunteers','# of Youth Volunteers', 'Time to Complete (min)', 'Routes Completed',
+            'Doors in Route', 'Time Spent', 'Bags/Door', 'Bags/Route',
+            'Total Volunteers']
+        target = 'Donation Bags Collected'
+
+        X = df[features]
+        y = df[target]
+
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-        from sklearn.neighbors import KNeighborsRegressor
-        model = KNeighborsRegressor(n_neighbors=5)  # You can adjust the number of neighbors
+        from sklearn.neighbors import RandomForestRegressor
+        model = RandomForestRegressor(n_estimators=100, random_state=42)  # You can adjust the number of neighbors
         model.fit(X_train, y_train)
     
         # Prepare input data for prediction
@@ -166,8 +172,7 @@ def machine_learning_modeling_regression():
         prediction = model.predict(user_input)
 
         # Display the prediction
-        st.success(f"Predicted Donation Bags: {prediction[0]}")
-# Page 4: Stake/Ward Map
+        st.success(f"Predicted Donation Bags: {prediction[0]}")# Page 4: Stake/Ward Map
 
 def neighbourhood_mapping():
     st.title("Stake/Ward Map")
