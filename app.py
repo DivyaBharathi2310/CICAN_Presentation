@@ -232,6 +232,8 @@ def data_collection():
     st.markdown(f"[Fill out the form]({google_form_url})")
 
 
+from gradient import Gradient  # Import the Gradient class or module
+
 def chatbot():
     st.title("Interactive Food Drive Assistant")
     st.write("Ask a question about the Food Drive!")
