@@ -166,7 +166,7 @@ def machine_learning_modeling_regression():
         model.fit(X_train, y_train)
     
         # Prepare input data for prediction
-        user_input = [[adult_volunteers, youth_volunteers, time_spent, completed_routes,routes_completed , doors_in_route]] 
+        user_input = [[# of Adult Volunteers, # of Youth Volunteers, Time to Complete (min), Routes_completed , Doors in Route]] 
 
         # Make prediction
         prediction = model.predict(user_input)
