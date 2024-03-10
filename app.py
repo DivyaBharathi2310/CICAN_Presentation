@@ -235,7 +235,7 @@ def data_collection():
 def main():
     st.sidebar.title("Food Drive App")
     app_page = st.sidebar.radio("Select a Page",
-                                ["Dashboard", "EDA", "ML Modeling-Time Prediction", "ML Modeling-Donation Bag Prediction", "Stake/Ward Map", "Data Collection", "Chatbot"])
+                                ["Dashboard", "EDA", "ML Modeling-Time Prediction", "ML Modeling-Donation Bag Prediction", "Stake/Ward Map", "Data Collection"])
 
     if app_page == "Dashboard":
         dashboard()
