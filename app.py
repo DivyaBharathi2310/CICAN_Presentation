@@ -2,10 +2,6 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import joblib
-import os
-from gradientai import Gradient
-os.environ['GRADIENT_ACCESS_TOKEN'] = st.secrets["GRADIENT_ACCESS_TOKEN"]
-os.environ['GRADIENT_WORKSPACE_ID'] = st.secrets["GRADIENT_WORKSPACE_ID"]
 
 # Load the dataset with a specified encoding
 data = pd.read_csv('combined_data.csv', encoding='latin1')
@@ -234,23 +230,6 @@ def data_collection():
 
 
 
-def chatbot():
-    st.title("Interactive Food Drive Assistant")
-    st.markdown(f"**Disclaimer:** This chatbot may provide project specific information, but will mostly provide general answers and serves mostly as a demonstration of an app integrated chatbot.")
-    st.write("Ask a question about the Food Drive!")
-
-    with Gradient() as gradient:
-        new_model_adapter = gradient.get_model_adapter(model_adapter_id=st.secrets['Model_ID'])        
-
-        user_input = st.text_input("")
-        if user_input and user_input.lower() not in ['quit', 'exit']:
-            sample_query = f"### Instruction: {user_input} \n\n### Response:"
-            #st.markdown(f"Asking: {sample_query}")
-            st.markdown(f"### Response:")
-
-            # before fine-tuning
-            completion = new_model_adapter.complete(query=sample_query, max_generated_token_count=100).generated_output
-            st.markdown(f"{completion}")
         
 # Main App Logic
 def main():
@@ -270,9 +249,7 @@ def main():
         neighbourhood_mapping()
     elif app_page == "Data Collection":
         data_collection()
-    elif app_page == "Chatbot":
-        chatbot()
-
+    
 
 if __name__ == "__main__":
     main()
