@@ -135,8 +135,8 @@ def machine_learning_modeling_classification():
 
         # You can add additional information or actions based on the prediction if needed
 
-  # Page 3: Machine Learning Modeling
-  def machine_learning_modeling_regression():
+# Page 3: Machine Learning Modeling
+def machine_learning_modeling_regression():
       st.title("Machine Learning Modeling")
       st.write("Enter the details to predict donation bags:")
 
