@@ -252,7 +252,7 @@ def chatbot():
 
         # Delete the model adapter after generating the response
         new_model_adapter.delete()
-
+        
 # Main App Logic
 def main():
     st.sidebar.title("Food Drive App")
