@@ -166,13 +166,17 @@ def machine_learning_modeling_regression():
         model.fit(X_train, y_train)
     
         # Prepare input data for prediction
-        user_input = [[# of Adult Volunteers, # of Youth Volunteers, Time to Complete (min), Routes_completed , Doors in Route]] 
+        input_data = [
+            [stake_num, ward_branch_num, adult_volunteers, youth_volunteers, donation_bags_collected, routes_completed,
+             doors_in_route, bags_per_door, bags_per_route, total_volunteers]]
 
         # Make prediction
-        prediction = model.predict(user_input)
+        prediction = model.predict(input_data)
 
         # Display the prediction
-        st.success(f"Predicted Donation Bags: {prediction[0]}")# Page 4: Stake/Ward Map
+        st.success(f"Predicted Donation Bags: {prediction[0]}")
+        
+# Page 4: Stake/Ward Map
 
 def neighbourhood_mapping():
     st.title("Stake/Ward Map")
